@@ -13,6 +13,7 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    command: bash -c "mkdir -p /var/mysql-pid && chown mysql:mysql /var/mysql-pid && chmod 700 /var/mysql-pid && exec mysqld --pid-file=/var/mysql-pid/mysqld.pid"
 
   frontend:
     build:
