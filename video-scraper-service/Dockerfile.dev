@@ -1,5 +1,5 @@
 # Development Dockerfile for ASP.NET Core backend with hot-reload and .env support
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS base
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS base
 WORKDIR /app
 COPY . .
 EXPOSE 5002
