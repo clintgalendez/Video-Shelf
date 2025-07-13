@@ -1,0 +1,43 @@
+# Node.js (frontend)
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.env
+/frontend/.DS_Store
+/frontend/.vscode/
+/frontend/.eslintcache
+
+# Vite
+/frontend/.vite/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Visual Studio
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ASP.NET Core (user-service, video-scraper-service)
+**/bin/
+**/obj/
+**/wwwroot/lib/
+**/wwwroot/node_modules/
+**/wwwroot/dist/
+
+# Rider
+.idea/
+
+# Docker
+*.pid
+
+# Misc
+.env
+.env.*
+
+# Ignore local dev files
+.vscode/
