@@ -1,0 +1,9 @@
+# Development Dockerfile for Vite React frontend with hot-reload and .env support
+FROM node:20-alpine
+WORKDIR /app
+COPY package.json package-lock.json* yarn.lock* ./
+RUN npm install
+COPY . .
+EXPOSE 5173
+ENV NODE_ENV=development
+CMD ["npm", "run", "dev"]

@@ -1,0 +1,62 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: mysql-dev
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: videoshelf
+      MYSQL_USER: devuser
+      MYSQL_PASSWORD: devpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: frontend-dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    env_file:
+      - ./frontend/.env
+    depends_on:
+      - user-service
+      - video-scraper-service
+
+  user-service:
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile.dev
+    container_name: user-service-dev
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./user-service:/app
+    env_file:
+      - ./user-service/.env
+    depends_on:
+      - mysql
+
+  video-scraper-service:
+    build:
+      context: ./video-scraper-service
+      dockerfile: Dockerfile.dev
+    container_name: video-scraper-service-dev
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./video-scraper-service:/app
+    env_file:
+      - ./video-scraper-service/.env
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:

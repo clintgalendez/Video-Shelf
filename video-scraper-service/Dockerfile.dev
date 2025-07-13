@@ -1,0 +1,8 @@
+# Development Dockerfile for ASP.NET Core backend with hot-reload and .env support
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS base
+WORKDIR /app
+COPY . .
+EXPOSE 5002
+EXPOSE 5003
+ENV ASPNETCORE_ENVIRONMENT=Development
+CMD ["dotnet", "watch", "run", "--urls", "http://0.0.0.0:5002"]
